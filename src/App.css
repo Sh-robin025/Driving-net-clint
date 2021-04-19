@@ -1,0 +1,36 @@
+.login-page{
+    position:relative;
+    background-image: url(./images/Sign-On-featured-image.jpg);
+    height: 625px;
+    z-index: 1;
+}
+.login-page::after{
+    content:' ';
+    position: absolute;
+    top: 0;
+    background-color: #3a4256;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: rgb(14, 15, 26);
+    opacity: .5;
+    z-index: -1;
+}
+.profile{
+    position: relative;
+    background-image: url(./images/profile-poster-background-material-image_163325.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
+}
+.profile::after{
+    content:'';
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(14, 15, 26);
+    opacity: .9;
+    z-index: -1;
+}

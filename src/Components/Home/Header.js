@@ -19,7 +19,6 @@ const Header = () => {
     }, [])
     return (
         <div >
-            <NavBar />
             <Carousel style={{ height: '600px' }}>
                 {
                     bannerData.map(item =>

@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Modal from 'react-modal';
-import { GoCloudUpload } from 'react-icons/go';
 import { useForm } from "react-hook-form";
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import axios from 'axios';
 import { BiPlusMedical } from 'react-icons/bi';
-import { AiOutlineAppstoreAdd } from 'react-icons/ai';
+import { manageOptionContext } from '../DashBoard';
 
 const customStyles = {
     content: {
@@ -24,17 +23,17 @@ const customStyles = {
 };
 Modal.setAppElement('#root')
 
-
 const ModalForm = () => {
     const [formReq, setFormReq] = useState()
     const [imageURL, setImageURL] = useState()
     const [modalIsOpen, setIsOpen] = useState(false);
     const { register, handleSubmit, watch, errors } = useForm();
+    const [manageOption, setManageOption] = useContext(manageOptionContext)
 
     const openModal = (req) => {
-        req === 'banner' && setFormReq('banner')
-        req === 'service' && setFormReq("service")
-        req === 'course' && setFormReq("course")
+        req === 'topBanner' && setFormReq('addTopBanner')
+        req === 'services' && setFormReq('addService')
+        req === 'courses' && setFormReq('addCourse')
         setIsOpen(true);
     }
 
@@ -51,62 +50,27 @@ const ModalForm = () => {
     }
 
     const onSubmit = async data => {
-        if (formReq === 'banner') {
-            const bannerData = { title: data.title, description: data.description, banner: imageURL.image }
-            await axios.post('https://driving-net.herokuapp.com/addTopBanner', {
-                headers: { 'Content-Type': 'application/json' },
-                body: bannerData
+        const allData = { title: data.title, description: data.description, banner: imageURL.image }
+        await axios.post(`https://driving-net.herokuapp.com/${formReq}`, {
+            headers: { 'Content-Type': 'application/json' },
+            body: allData
+        })
+            .then(res => {
+                res.status === 200 && setIsOpen(false)
+                alert('item added successfully.')
             })
-                .then(res => {
-                    res.status === 200 && setIsOpen(false)
-                    alert('banner added successfully.')
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-        }
-        if (formReq === 'service') {
-            const serviceData = { title: data.title, description: data.description, banner: imageURL.image }
-            await axios.post('http://localhost:5050/addService', {
-                headers: { 'Content-Type': 'application/json' },
-                body: serviceData
+            .catch(err => {
+                console.log(err)
             })
-                .then(res => {
-                    res.status === 200 && setIsOpen(false)
-                    alert('service added successfully.')
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-        }
-        if (formReq === 'course') {
-            const courseData = { title: data.title, description: data.description, banner: imageURL.image }
-            console.log(courseData)
-            // await axios.post('http://localhost:5050/addService', {
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: serviceData
-            // })
-            //     .then(res => {
-            //         res.status === 200 && setIsOpen(false)
-            //         alert('service added successfully.')
-            //     })
-            //     .catch(err => {
-            //         console.log(err)
-            //     })
-        }
     }
 
     return (
         <div>
-            <Button variant="outline-info" block onClick={() => openModal('banner')}>
-                <strong><GoCloudUpload /> Upload Top Banner Image</strong>
-            </Button>
-            <Button variant="outline-info" block onClick={() => openModal('service')} className="my-3">
-                <strong><BiPlusMedical /> Add New Service Item</strong>
-            </Button>
-            <Button variant="outline-info" block onClick={() => openModal('course')} className="my-3">
-                <strong><AiOutlineAppstoreAdd /> Add New Course</strong>
-            </Button>
+            <div className="d-flex justify-content-end">
+                <Button variant="outline-info" onClick={() => openModal(manageOption)}>
+                    <strong><BiPlusMedical /> Add New</strong>
+                </Button>
+            </div>
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}

@@ -9,7 +9,7 @@ const Service = () => {
     useEffect(() => {
         axios({
             method: 'get',
-            url: 'http://localhost:5050/services'
+            url: 'https://driving-net.herokuapp.com/services'
         })
             .then(res => setServices(res.data))
     }, [])
