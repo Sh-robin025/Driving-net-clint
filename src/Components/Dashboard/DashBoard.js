@@ -4,10 +4,11 @@ import { createContext } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { Route } from 'react-router-dom';
 import { userContext } from '../../App';
-import ManageOption from './Administation/ManageOption';
-import AdminTable from './Administation/AdminTable';
+import ManageOption from './Administration/ManageOption';
+import AdminTable from './Administration/AdminTable';
 import SideBar from './SideBar';
 import ProfileInfo from './ProfileInfo';
+import AddAdmin from './Administration/AddAdmin';
 
 
 export const manageOptionContext = createContext()
@@ -37,13 +38,15 @@ const DashBoard = () => {
             <manageOptionContext.Provider value={[manageOption, setManageOption]}>
                 <Row style={{ height: '625px' }}>
                     <SideBar />
-                    <ProfileInfo/>
                     <Col md={10} className="pt-5">
-                        <Route path="/administration/ManageOption">
+                        <Route path="/dashBoard/manageOption">
                             <ManageOption />
                         </Route>
                         <Route path="/dashBoard/adminTable">
                             <AdminTable />
+                        </Route>
+                        <Route path="/dashBoard/addAdmin">
+                            <AddAdmin />
                         </Route>
                     </Col>
                 </Row>

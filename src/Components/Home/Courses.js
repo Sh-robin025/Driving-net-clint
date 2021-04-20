@@ -20,7 +20,7 @@ const Courses = () => {
                 <p className="text-secondary">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda amet consectetur maiores sunt iste fuga.</p>
                 {/* <div style={{ height: '2px', backgroundColor: 'black', width: '20%', margin: 'auto' }}></div> */}
             </div>
-            <Row className="pt-5 d-flex justify-content-center bg-info">
+            <Row className="py-5 d-flex justify-content-center bg-info">
                 {
                     courses?.map(item => <SingleCourse key={item._id} course={item} />)
                 }

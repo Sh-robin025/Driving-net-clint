@@ -16,6 +16,27 @@ const AdminTable = () => {
         })
             .then(res => setTableData(res.data))
     }, [manageOption])
+    const handleDelete = id => { 
+        if (manageOption === 'topBanner') {
+            axios({
+                method:'delete',
+                url:`http://localhost:5050/deleteBanner/${id}`,
+            })
+        }
+        if (manageOption === 'services') {
+            axios({
+                method:'delete',
+                url:`http://localhost:5050/deleteService/${id}`,
+            })
+        }
+        if (manageOption === 'courses') {
+            axios({
+                method:'delete',
+                url:`http://localhost:5050/deleteCourse/${id}`,
+            })
+        }
+        
+    }
     return (
         <div className="p-4">
             <h3 className="text-center mb-4">
@@ -44,7 +65,7 @@ const AdminTable = () => {
                                         <FaEdit /> edit
                                     </h6>
                                     <div className="my-3" style={{ height: '2px', backgroundColor: 'black' }}></div>
-                                    <h6 style={{ cursor: 'pointer', }}>
+                                    <h6 style={{ cursor: 'pointer' }} onClick={() => handleDelete(data._id)}>
                                         <AiFillDelete /> del
                                     </h6>
                                 </td>

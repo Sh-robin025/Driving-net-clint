@@ -78,9 +78,9 @@ const ModalForm = () => {
                 contentLabel="Example Modal"
             >
                 <h5 style={{ color: '#1cc7c1', fontWeight: '700', letterSpacing: '1px' }}>
-                    {formReq === 'banner' && 'Upload Top Banner Image'}
-                    {formReq === 'service' && 'Add New Service Item'}
-                    {formReq === 'course' && 'Add New Course Item'}
+                    {formReq === 'addTopBanner' && 'Upload Top Banner Image'}
+                    {formReq === 'addService' && 'Add New Service Item'}
+                    {formReq === 'addCourse' && 'Add New Course Item'}
                 </h5>
                 <Form className="mt-5" onSubmit={handleSubmit(onSubmit)}>
                     <Form.Group as={Row}>
@@ -105,7 +105,7 @@ const ModalForm = () => {
                     </Form.Group>
                     <div className="d-flex justify-content-end mt-4">
                         <Button type="submit" variant="outline-info">
-                            <span>SEND</span>
+                            <span>Submit</span>
                         </Button>
                     </div>
                 </Form>

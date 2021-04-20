@@ -3,7 +3,7 @@ import { Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { SiGoogletagmanager } from 'react-icons/si';
 import { FaShoppingCart } from 'react-icons/fa';
-import { AiOutlineBorderlessTable } from 'react-icons/ai';
+import { AiOutlineBorderlessTable,AiOutlineUsergroupAdd } from 'react-icons/ai';
 import { IoHome } from 'react-icons/io5';
 import { userRoleContext } from './DashBoard';
 
@@ -19,7 +19,7 @@ const SideBar = () => {
             <div className="pt-5">
                 {
                     userRole === 'admin' ? <>
-                        <Link to="/administration/ManageOption" className="text-dark" style={{ textDecoration: 'none' }}>
+                        <Link to="/dashBoard/manageOption" className="text-dark" style={{ textDecoration: 'none' }}>
                             <h6>
                                 <strong>< SiGoogletagmanager /> MANAGE SITE</strong>
                             </h6>
@@ -27,6 +27,11 @@ const SideBar = () => {
                         <Link to="" className="text-dark" style={{ textDecoration: 'none' }}>
                             <h6>
                                 <strong> <AiOutlineBorderlessTable /> MANAGE ORDER'S</strong>
+                            </h6>
+                        </Link><br/>
+                        <Link to="/dashBoard/addAdmin" className="text-dark" style={{ textDecoration: 'none' }}>
+                            <h6>
+                                <strong> <AiOutlineUsergroupAdd /> ADD ADMIN</strong>
                             </h6>
                         </Link>
                     </> : <Link to="" className="text-dark" style={{ textDecoration: 'none' }}>

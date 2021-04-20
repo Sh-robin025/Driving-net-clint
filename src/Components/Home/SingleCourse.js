@@ -13,7 +13,7 @@ const SingleCourse = ({ course }) => {
             <div className="mt-3" style={{ height: '2px', backgroundColor: 'black', width: '20%', margin: 'auto' }}></div>
             <p className="text-justify pt-4">{course.description}</p>
             <div className="d-flex justify-content-center">
-                <Link to="/applicationForm">
+                <Link to="/checkOut">
                     <Button variant="info" className="text-dark m-3"
                         style={{ border: 'none', borderRadius: '0px', padding: '5px 30px', letterSpacing: '2px' }}>
                         <strong> <AiOutlineForm /> GET ADMIT</strong>
