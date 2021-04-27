@@ -9,6 +9,7 @@ import AdminTable from './Administration/AdminTable';
 import SideBar from './SideBar';
 import ProfileInfo from './ProfileInfo';
 import AddAdmin from './Administration/AddAdmin';
+import CustomerOrder from './Customer/CustomerOrder';
 
 
 export const manageOptionContext = createContext()
@@ -47,6 +48,9 @@ const DashBoard = () => {
                         </Route>
                         <Route path="/dashBoard/addAdmin">
                             <AddAdmin />
+                        </Route>
+                        <Route path="/dashBoard/myOrderList">
+                            <CustomerOrder />
                         </Route>
                     </Col>
                 </Row>
