@@ -22,7 +22,7 @@ const Login = () => {
     const googleLogin = () => {
         handleGoogleSignIn()
             .then(user => {
-                sessionStorage.setItem('user', JSON.stringify(user.user))
+                // sessionStorage.setItem('user', JSON.stringify(user.user))
                 setLoggedInUser(user.user)
                 axios.post('https://driving-net.herokuapp.com/addUser', {
                     headers: { 'Content-Type': 'application/json' },
