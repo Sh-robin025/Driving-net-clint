@@ -6,7 +6,6 @@ import { userContext } from '../../../App';
 const CustomerOrder = () => {
     const [loggedInUser, setLoggedInUser] = useContext(userContext)
     const [orders, setOrders] = useState()
-    console.log(orders)
     useEffect(() => {
         axios({
             method: 'get',
