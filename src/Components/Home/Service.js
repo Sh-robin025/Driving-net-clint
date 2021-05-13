@@ -22,7 +22,7 @@ const Service = () => {
             </div>
             <Row className="mt-3">
                 {
-                    services && services.map(item => <SingleService key={item._id} service={item} />)
+                    services && services.map((item, index) => <SingleService key={item._id} service={item} index={index}/>)
                 }
             </Row>
         </div>

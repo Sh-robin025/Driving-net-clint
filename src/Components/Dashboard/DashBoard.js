@@ -49,8 +49,11 @@ const DashBoard = () => {
                         <Route path="/dashBoard/addAdmin">
                             <AddAdmin />
                         </Route>
-                        <Route path="/dashBoard/myOrderList">
+                        <Route path="/dashBoard/orderList">
                             <CustomerOrder />
+                        </Route>
+                        <Route exact path="/dashBoard">
+                            <ProfileInfo />
                         </Route>
                     </Col>
                 </Row>

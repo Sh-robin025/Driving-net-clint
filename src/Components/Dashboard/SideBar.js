@@ -24,7 +24,7 @@ const SideBar = () => {
                                 <strong>< SiGoogletagmanager /> MANAGE SITE</strong>
                             </h6>
                         </Link><br />
-                        <Link to="" className="text-dark" style={{ textDecoration: 'none' }}>
+                        <Link to="/dashBoard/orderList" className="text-dark" style={{ textDecoration: 'none' }}>
                             <h6>
                                 <strong> <AiOutlineBorderlessTable /> MANAGE ORDER'S</strong>
                             </h6>
@@ -34,7 +34,7 @@ const SideBar = () => {
                                 <strong> <AiOutlineUsergroupAdd /> ADD ADMIN</strong>
                             </h6>
                         </Link>
-                    </> : <Link to="/dashBoard/myOrderList" className="text-dark" style={{ textDecoration: 'none' }}>
+                    </> : <Link to="/dashBoard/orderList" className="text-dark" style={{ textDecoration: 'none' }}>
                         <h5>
                             <strong>< FaShoppingCart /> MY ORDER'S</strong>
                         </h5>

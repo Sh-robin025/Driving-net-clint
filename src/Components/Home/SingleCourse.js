@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Col, Button } from 'react-bootstrap';
 import { AiOutlineForm } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { courseContext } from '../../App';
 
-const SingleCourse = ({ course }) => {
+const SingleCourse = ({ course, index }) => {
+    const [selectCourse, setSelectCourse] = useContext(courseContext);
+    const history = useHistory()
+
+    const handleBook = (title, fees) => {
+        setSelectCourse({ title: title, fees: fees })
+        history.push('/checkOut')
+    }
     return (
-        <Col md={3} className="bg-light m-3 p-4" style={{ borderRadius: '50%' }}>
+        <Col md={3} className="bg-light m-3 p-4" style={{ borderRadius: '50%' }}
+            data-aos="flip-left"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="1500">
             <div className="d-flex justify-content-center">
                 <img src={course.banner} alt="" className="img-fluid" style={{ height: '70px' }} />
             </div><br />
@@ -13,12 +24,10 @@ const SingleCourse = ({ course }) => {
             <div className="mt-3" style={{ height: '2px', backgroundColor: 'black', width: '20%', margin: 'auto' }}></div>
             <p className="text-justify pt-4">{course.description}</p>
             <div className="d-flex justify-content-center">
-                <Link to="/checkOut">
-                    <Button variant="info" className="text-dark m-3"
-                        style={{ border: 'none', borderRadius: '0px', padding: '5px 30px', letterSpacing: '2px' }}>
-                        <strong> <AiOutlineForm /> GET ADMIT</strong>
-                    </Button>
-                </Link>
+                <Button variant="info" className="text-dark m-3" onClick={() => handleBook(`${course.title}`, `${course.fees}`)}
+                    style={{ border: 'none', borderRadius: '0px', padding: '5px 30px', letterSpacing: '2px' }}>
+                    <strong> <AiOutlineForm /> GET ADMIT</strong>
+                </Button>
             </div>
         </Col>
     );

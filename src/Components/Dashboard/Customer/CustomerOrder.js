@@ -9,7 +9,7 @@ const CustomerOrder = () => {
     useEffect(() => {
         axios({
             method: 'get',
-            url: `http://localhost:5050/orders/${loggedInUser.email}`
+            url: `https://driving-net.herokuapp.com/${loggedInUser.email}`
         })
             .then(res => setOrders(res.data))
     }, [loggedInUser.email])
@@ -27,24 +27,13 @@ const CustomerOrder = () => {
                 </thead>
                 <tbody>
                     {
-                        orders.map((item, index) => <tr>
+                        orders?.map((item, index) => <tr>
                             <td>{index + 1}</td>
-                            <td>{item.orderData.course}</td>
-                            <td>{item.orderData.applicationEmail}</td>
-                            <td>{item.status}</td>
+                            <td>{item.course}</td>
+                            <td>{item.email}</td>
+                            <td>Pending...</td>
                         </tr>)
                     }
-                    {/* <tr>
-                        <td>1</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr> */}
-                    {/* <tr>
-                        <td>3</td>
-                        <td colSpan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr> */}
                 </tbody>
             </Table>
         </div>

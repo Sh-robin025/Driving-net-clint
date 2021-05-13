@@ -16,26 +16,26 @@ const AdminTable = () => {
         })
             .then(res => setTableData(res.data))
     }, [manageOption])
-    const handleDelete = id => { 
+    const handleDelete = id => {
         if (manageOption === 'topBanner') {
             axios({
-                method:'delete',
-                url:`http://localhost:5050/deleteBanner/${id}`,
-            })
+                method: 'delete',
+                url: `http://localhost:5050/deleteBanner/${id}`,
+            }).then(res => alert("item deleted successfully"))
         }
         if (manageOption === 'services') {
             axios({
-                method:'delete',
-                url:`http://localhost:5050/deleteService/${id}`,
-            })
+                method: 'delete',
+                url: `http://localhost:5050/deleteService/${id}`,
+            }).then(res => alert("item deleted successfully"))
         }
         if (manageOption === 'courses') {
             axios({
-                method:'delete',
-                url:`http://localhost:5050/deleteCourse/${id}`,
-            })
+                method: 'delete',
+                url: `http://localhost:5050/deleteCourse/${id}`,
+            }).then(res => alert("item deleted successfully"))
         }
-        
+
     }
     return (
         <div className="p-4">

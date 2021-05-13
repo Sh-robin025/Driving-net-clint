@@ -24,8 +24,8 @@ const customStyles = {
 Modal.setAppElement('#root')
 
 const ModalForm = () => {
-    const [formReq, setFormReq] = useState()
-    const [imageURL, setImageURL] = useState()
+    const [formReq, setFormReq] = useState();
+    const [imageURL, setImageURL] = useState();
     const [modalIsOpen, setIsOpen] = useState(false);
     const { register, handleSubmit, watch, errors } = useForm();
     const [manageOption, setManageOption] = useContext(manageOptionContext)
@@ -40,17 +40,17 @@ const ModalForm = () => {
     function closeModal() {
         setIsOpen(false);
     }
-    const handleImgUpload = async e => {
+    const handleImgUpload = e => {
         const imageData = new FormData()
-        imageData.set('key', 'c0c27e2c45a2d6cf07a97ef163c77a21')
+        imageData.set('key', '6edb945b9d519c3925e2ad19993929cf')
         imageData.append('image', e.target.files[0]);
-        await axios.post('https://api.imgbb.com/1/upload', imageData)
+        axios.post('https://api.imgbb.com/1/upload', imageData)
             .then(res => setImageURL({ image: res.data.data.display_url }))
             .catch(err => console.log("err :", err))
     }
 
     const onSubmit = async data => {
-        const allData = { title: data.title, description: data.description, banner: imageURL.image }
+        const allData = { title: data.title, description: data.description, banner: imageURL.image, fees: data.fees }
         await axios.post(`https://driving-net.herokuapp.com/${formReq}`, {
             headers: { 'Content-Type': 'application/json' },
             body: allData
@@ -103,6 +103,16 @@ const ModalForm = () => {
                             </Form.Control>
                         </Col>
                     </Form.Group>
+                    {
+                        formReq === 'addCourse' && <Form.Group as={Row}>
+                            <Col>
+                                <Form.Control type="text" {...register('fees')} required placeholder="Course Fees"
+                                    className="form-control p-3"
+                                    style={{ fontSize: '20px' }} >
+                                </Form.Control>
+                            </Col>
+                        </Form.Group>
+                    }
                     <div className="d-flex justify-content-end mt-4">
                         <Button type="submit" variant="outline-info">
                             <span>Submit</span>
