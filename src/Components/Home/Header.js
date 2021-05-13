@@ -33,10 +33,10 @@ const Header = () => {
                                 <Col md={4}>
                                     <h2>{item.title}</h2><br />
                                     <p>{item.description}</p><br />
-                                    <Link to="/applicationForm">
+                                    <Link to="/checkOut">
                                         <Button variant="info" className="text-dark"
                                             style={{ border: 'none', borderRadius: '0px', padding: '5px 30px', letterSpacing: '2px' }}>
-                                            <strong> <AiOutlineForm /> APPLICATION</strong>
+                                            <strong> <AiOutlineForm /> GET ADMIT</strong>
                                         </Button>
                                     </Link>
                                 </Col>

@@ -23,16 +23,21 @@ const CheckOut = () => {
     }, [])
 
     const onSubmit = data => {
-        const orderData = { ...data, course: selectCourse.title, fees: selectCourse.fees }
-        axios.post("https://driving-net.herokuapp.com/addOrder", {
-            headers: { 'Content-Type': 'application/json' },
-            body: orderData
-        }).then(res => {
-            res.status === 200 && history.push('/checkOut/success')
-        })
-            .catch(err => {
-                console.log(err)
+        const orderData = { ...data, course: selectCourse?.title, fees: selectCourse?.fees }
+        if (orderData.course) {
+            axios.post("https://driving-net.herokuapp.com/addOrder", {
+                headers: { 'Content-Type': 'application/json' },
+                body: orderData
+            }).then(res => {
+                res.status === 200 && history.push('/checkOut/success')
             })
+                .catch(err => {
+                    console.log(err)
+                })
+        }else{
+            alert("Dear user, You didn't select any course. Please select one.")
+        }
+
     }
     return (
         <div>
@@ -64,19 +69,19 @@ const CheckOut = () => {
                 <InputGroup className="mb-3">
                     <InputGroup.Prepend>
                         <InputGroup.Text>
-                            <strong>{selectCourse.title}</strong>
+                            <strong>{selectCourse?.title || "Select a course from option"}</strong>
                         </InputGroup.Text>
                     </InputGroup.Prepend>
                     <InputGroup.Prepend>
                         <InputGroup.Text>
-                            <strong>$ {selectCourse.fees}</strong>
+                            <strong>$ {selectCourse?.fees || 0}</strong>
                         </InputGroup.Text>
                     </InputGroup.Prepend>
                     <DropdownButton
                         className="ml-2"
                         as={ButtonGroup}
                         menuAlign={{ lg: 'right' }}
-                        title="Change course"
+                        title={selectCourse ? "Change course" : "Select Course"}
                         id="dropdown-menu-align-responsive-1"
                     >
                         {
@@ -85,7 +90,7 @@ const CheckOut = () => {
                         }
                     </DropdownButton>
                 </InputGroup>
-                <h6>* You have to pay $ {selectCourse.fees} for this course.</h6>
+                <h6>* You have to pay $ {selectCourse?.fees || 0} for this course.</h6>
                 <br />
                 <Row>
                     <button type="submit">Submit</button>
@@ -96,7 +101,7 @@ const CheckOut = () => {
                     /> */}
                 </Row>
             </Form>
-        </div>
+        </div >
     );
 };
 
