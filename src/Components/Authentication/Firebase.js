@@ -19,7 +19,7 @@ export const handleGoogleSignIn = () => {
     return firebase.auth()
         .signInWithPopup(provider)
         .then(result => {
-            return result
+            return result;
         }).catch(error => {
             const errorCode = error.code;
             const errorMessage = error.message;
@@ -28,12 +28,13 @@ export const handleGoogleSignIn = () => {
             console.log(errorCode, errorMessage, email, credential)
         });
 }
-export const handleIdToken = () => {
+
+export const storeAuthToken = () => {
     return firebase.auth()
         .currentUser.getIdToken(/* forceRefresh */ true)
         .then(idToken => {
-            console.log(idToken)
+            return idToken;
         }).catch(error => {
             console.log(error)
-        })
+        });
 }

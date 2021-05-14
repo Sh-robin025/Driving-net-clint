@@ -14,6 +14,7 @@ import 'aos/dist/aos.css';
 import CheckOut from "./Components/Booking/CheckOut";
 import success from './images/success.png';
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import jwt_decode from "jwt-decode";
 
 export const userContext = createContext()
 export const courseContext = createContext()
@@ -21,13 +22,20 @@ export const courseContext = createContext()
 function App() {
   const [loggedInUser, setLoggedInUser] = useState()
   const [selectCourse, setSelectCourse] = useState()
+
   useEffect(() => {
-    const loggedUser = JSON.parse(sessionStorage.getItem('user'))
-    if (loggedUser) {
-      setLoggedInUser(loggedUser)
-    }
     AOS.init();
+    isLoggedIn()
   }, [])
+
+  const isLoggedIn = () => {
+    const token = sessionStorage.getItem('token');
+    if (token) {
+      const decodedToken = jwt_decode(token);
+      setLoggedInUser(decodedToken)
+    }
+  }
+
   return (
     <userContext.Provider value={[loggedInUser, setLoggedInUser]}>
       <courseContext.Provider value={[selectCourse, setSelectCourse]}>

@@ -10,13 +10,13 @@ import { userRoleContext } from './DashBoard';
 const SideBar = () => {
     const [userRole, setUserRole] = useContext(userRoleContext)
     return (
-        <Col md={2} className="bg-info pt-3 pl-5">
+        <Col md={2} className="bg-info pl-5">
             <Link to="/" className="text-dark" style={{ textDecoration: 'none' }}>
                 <h2>
                     <strong><IoHome /></strong>
                 </h2>
             </Link>
-            <div className="pt-5">
+            <div className="mt-5">
                 {
                     userRole === 'admin' ? <>
                         <Link to="/dashBoard/manageOption" className="text-dark" style={{ textDecoration: 'none' }}>

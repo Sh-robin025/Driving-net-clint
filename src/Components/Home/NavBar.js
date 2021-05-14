@@ -8,7 +8,7 @@ import { RiDashboardFill } from 'react-icons/ri';
 const NavBar = () => {
     const [loggedInUser, setLoggedInUser] = useContext(userContext)
     const handleLogOut = () => {
-        sessionStorage.removeItem('user')
+        sessionStorage.removeItem('token')
         setLoggedInUser()
     }
     return (
@@ -25,12 +25,12 @@ const NavBar = () => {
                                 <Dropdown>
                                     <Dropdown.Toggle variant="light" id="dropdown-basic"
                                         style={{ border: 'none', borderRadius: '0px', padding: '5px 30px' }}>
-                                        <strong><FaUserAlt /> {loggedInUser.displayName}</strong>
+                                        <strong><FaUserAlt /> {loggedInUser.displayName || loggedInUser.name}</strong>
                                     </Dropdown.Toggle>
 
                                     <Dropdown.Menu className="text-center">
                                         <Dropdown.Item className="d-flex justify-content-center">
-                                            <img src={loggedInUser.photoURL} alt="" style={{ height: '50px', borderRadius: '50%' }} />
+                                            <img src={loggedInUser.photoURL || loggedInUser.picture} alt="" style={{ height: '50px', borderRadius: '50%' }} />
                                         </Dropdown.Item>
                                         <Dropdown.Item>
                                             <Link to="/dashBoard">

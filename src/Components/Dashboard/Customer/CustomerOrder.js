@@ -1,11 +1,15 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
-import { Table } from 'react-bootstrap';
+import { Dropdown, Table } from 'react-bootstrap';
 import { userContext } from '../../../App';
+import { userRoleContext } from '../DashBoard';
 
 const CustomerOrder = () => {
     const [loggedInUser, setLoggedInUser] = useContext(userContext)
+    const [userRole, setUserRole] = useContext(userRoleContext)
     const [orders, setOrders] = useState()
+    const [status, setStatus] = useState('Pending')
+
     useEffect(() => {
         axios({
             method: 'get',
@@ -15,7 +19,7 @@ const CustomerOrder = () => {
     }, [loggedInUser.email])
 
     return (
-        <div>
+        <div className="pt-5">
             <Table striped bordered hover>
                 <thead>
                     <tr>
@@ -31,12 +35,23 @@ const CustomerOrder = () => {
                             <td>{index + 1}</td>
                             <td>{item.course}</td>
                             <td>{item.email}</td>
-                            <td>Pending...</td>
+                            <td>
+                                <Dropdown>
+                                    <Dropdown.Toggle variant="success" id="dropdown-basic">
+                                        {status}
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                        <Dropdown.Item href="" >On Going</Dropdown.Item>
+                                        <Dropdown.Item href="" >Completed</Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            </td>
                         </tr>)
                     }
                 </tbody>
             </Table>
-        </div>
+        </div >
     );
 };
 

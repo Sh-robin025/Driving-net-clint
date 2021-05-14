@@ -13,6 +13,7 @@ const CheckOut = () => {
     const [courses, setCourses] = useState();
     const { register, handleSubmit, watch, errors } = useForm();
     const history = useHistory();
+    console.log(loggedInUser)
 
     useEffect(() => {
         axios({
@@ -34,7 +35,7 @@ const CheckOut = () => {
                 .catch(err => {
                     console.log(err)
                 })
-        }else{
+        } else {
             alert("Dear user, You didn't select any course. Please select one.")
         }
 

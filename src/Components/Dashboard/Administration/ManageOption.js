@@ -17,7 +17,7 @@ const ManageOption = () => {
         history.push('/dashBoard/adminTable')
     }
     return (
-        <div className="d-grid gap-2 col-6 mx-auto">
+        <div className="d-grid gap-2 col-6 mx-auto pt-5">
             <Button variant="outline-info" block onClick={() => handleManage('banner')}>
                 <strong><GoCloudUpload /> Top Banner Image</strong>
             </Button>

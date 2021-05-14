@@ -39,7 +39,7 @@ const DashBoard = () => {
             <manageOptionContext.Provider value={[manageOption, setManageOption]}>
                 <Row style={{ height: '625px' }}>
                     <SideBar />
-                    <Col md={10} className="pt-5">
+                    <Col md={10}>
                         <Route path="/dashBoard/manageOption">
                             <ManageOption />
                         </Route>

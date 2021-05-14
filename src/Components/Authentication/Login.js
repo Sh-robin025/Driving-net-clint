@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../App.css'
 import { Button, Form } from 'react-bootstrap';
 import user from '../../images/profile.png';
 import { IoMdLogIn } from 'react-icons/io';
 import { FaGooglePlusG } from 'react-icons/fa';
 import { RiFacebookCircleFill } from 'react-icons/ri';
-import { handleGoogleSignIn, handleIdToken, initialization } from './Firebase';
+import { handleGoogleSignIn, handleIdToken, initialization, storeAuthToken } from './Firebase';
 import { useContext } from 'react';
 import { userContext } from '../../App';
 import { useHistory, useLocation } from 'react-router-dom';
 import axios from 'axios';
-
 
 const Login = () => {
     const [loggedInUser, setLoggedInUser] = useContext(userContext)
@@ -19,19 +18,28 @@ const Login = () => {
     const { from } = location.state || { from: { pathname: "/" } };
     initialization()
 
+    const handleIdToken = () => {
+        storeAuthToken()
+            .then(result => {
+                sessionStorage.setItem('token', result);
+                history.replace(from);
+            })
+    }
+
     const googleLogin = () => {
         handleGoogleSignIn()
             .then(user => {
-                sessionStorage.setItem('user', JSON.stringify(user.user))
                 setLoggedInUser(user.user)
                 axios.post('https://driving-net.herokuapp.com/addUser', {
                     headers: { 'Content-Type': 'application/json' },
                     body: user.user
                 })
                 history.replace(from);
+                handleIdToken()
             })
             .catch(err => console.log(err))
     }
+
     return (
         <div className="login-page pt-5">
             <div style={{ width: '27%', marginRight: '150px' }} className="ml-auto mt-5">
